@@ -1,14 +1,58 @@
 import Nav from './Nav';
+import Link from 'next/link';
+import styled from 'styled-components';
 
-const Header = () => <div>
+const Logo = styled.h1`
+    margin: 0;
+    z-index: 10;
+    font-size: 3rem;
+    text-align: center;
+    position: relative;
+    transform: skew(-7deg);
+    a {
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: ${props => props.theme.white};
+        background-color: ${props => props.theme.primary};
+    }
+    @media (min-width: ${props => props.theme.large}) {
+        margin-left: 2rem;
+        font-size: 4rem;
+        text-align: initial;
+    }
+`;
+
+const StyledHeader = styled.header`
+    .bar {
+        display: grid;
+        align-items: stretch;
+        justify-content: center;
+        grid-template-columns: 1fr;
+        border-bottom: 10px solid ${props => props.theme.dark};
+        @media (min-width: ${props => props.theme.large}) {
+            justify-content: space-between;
+            grid-template-columns: auto 1fr;
+        }
+    }
+    .sub-bar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        border-bottom: 1px solid ${props => props.theme.lightgrey};
+    }
+`;
+
+const Header = () => <StyledHeader>
     <div className='bar'>
-        <a href=''>Sick Fits</a>
+        <Logo>
+            <Link href='/'><a>Sick Fits</a></Link>
+        </Logo>
         <Nav></Nav>
     </div>
     <div className='sub-bar'>
         <p>Search</p>
     </div>
     <div>Cart</div>
-</div>;
+</StyledHeader>;
 
 export default Header;
