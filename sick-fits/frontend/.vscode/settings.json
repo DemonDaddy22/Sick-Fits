@@ -4,5 +4,10 @@
     "titleBar.inactiveForeground": "#000000CC",
     "titleBar.activeBackground": "#FFC600",
     "titleBar.inactiveBackground": "#FFC600CC"
-  }
+  },
+  "css.lint.duplicateProperties": "warning",
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.debug": true
 }
