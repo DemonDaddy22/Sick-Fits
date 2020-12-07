@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import NProgress  from 'nprogress';
 import Nav from './Nav';
 
-Router.onRouteChangeStart = () => console.log('onRouteChangeStart');
-Router.onRouteChangeComplete = () => console.log('onRouteChangeComplete');
-Router.onRouteChangeError = () => console.log('onRouteChangeError');
+Router.onRouteChangeStart = () => NProgress.start();
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 const Logo = styled.h1`
     margin: 0;
