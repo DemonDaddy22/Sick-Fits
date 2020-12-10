@@ -1,9 +1,9 @@
 require('dotenv').config({ path: 'variables.env' });
 
-import createServer from './createServer';
-import db from './db';
+const createServer = require('./createServer');
+const db = require('./db');
 
-const server = new createServer();
+const server = createServer();
 
 // TODO - use Express middleware to handle cookies (JWT)
 // TODO - use Express middleware to populate current user

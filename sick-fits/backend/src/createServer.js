@@ -1,7 +1,7 @@
-import { GraphQLServer } from 'graphql-yoga';
-import Mutation from './resolvers/Mutation';
-import Query from './resolvers/Query';
-import db from './db';
+const { GraphQLServer } = require('graphql-yoga');
+const Mutation = require('./resolvers/Mutation');
+const Query = require('./resolvers/Query');
+const db = require('./db');
 
 // Create a GraphQL Yoga Server
 
