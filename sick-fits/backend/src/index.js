@@ -1,1 +1,1 @@
-// let's go!
+require('dotenv').config({ path: 'variables.env' });
