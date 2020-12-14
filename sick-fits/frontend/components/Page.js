@@ -6,7 +6,7 @@ import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 const theme = {
     primary: '#ff0000',
     black: '#000',
-    dark: '#272727',
+    dark: '#171717',
     grey: '#3f3f3f',
     lightgrey: '#e0e0e0',
     offwhite: '#ececec',

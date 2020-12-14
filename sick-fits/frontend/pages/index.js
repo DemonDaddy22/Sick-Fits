@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import Shop from './shop';
 
 const Home = props => <div>
-    <p>Hey!</p>
+    <Shop />
 </div>
 
 export default Home;
