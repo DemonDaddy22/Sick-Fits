@@ -19,6 +19,8 @@ const theme = {
     bs: '0 12px 24px 0 rgba(0, 0, 0, 0.1)'
 }
 
+// TODO - make styles responsive
+
 const StyledPage = styled.div`
     color: ${props => props.theme.dark};
     background-color: ${props => props.theme.white};
