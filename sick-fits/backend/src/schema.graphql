@@ -5,6 +5,7 @@ type Mutation {
     # TODO - add file upload logic to update and then use the below mutation
     # updateItem(data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item!
     updateItem(id: ID!, title: String, description: String, price: Int): Item!
+    deleteItem(where: ItemWhereUniqueInput!): Item
 }
 
 type Query {
