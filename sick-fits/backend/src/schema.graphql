@@ -2,8 +2,12 @@
 
 type Mutation {
     createItem(data: ItemCreateInput!): Item!
+    # TODO - add file upload logic to update and then use the below mutation
+    # updateItem(data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item!
+    updateItem(id: ID!, title: String, description: String, price: Int): Item!
 }
 
 type Query {
     items: [Item]!
+    item(where: ItemWhereUniqueInput!): Item
 }

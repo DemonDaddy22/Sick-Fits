@@ -60,7 +60,6 @@ export default class CreateItem extends React.Component {
     handleSubmit = async (e, createItem) => {
         e.preventDefault();
         const res = await createItem();
-        console.log(res);
         Router.push({
             pathname: '/item',
             query: { id: res.data.createItem.id }
