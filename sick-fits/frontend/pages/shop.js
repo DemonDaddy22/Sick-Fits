@@ -33,7 +33,7 @@ const ItemsList = styled.div`
 export default class Shop extends React.Component {
 
     render = () => <TextCenter>
-        <Pagination />
+        <Pagination page={parseFloat(this.props.query.page) || 1} />
         <Query query={ALL_ITEMS_QUERY}>
             {({ data, error, loading }) => {
                 if (loading) return <p>Loading...</p>;
@@ -43,6 +43,6 @@ export default class Shop extends React.Component {
                 </ItemsList>;
             }}
         </Query>
-        <Pagination />
+        <Pagination page={parseFloat(this.props.query.page) || 1} />
     </TextCenter>
 }
