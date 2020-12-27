@@ -35,7 +35,7 @@ export default class Shop extends React.Component {
 
     render = () => <TextCenter>
         <Pagination page={parseFloat(this.props.query.page) || 1} />
-        <Query query={ALL_ITEMS_QUERY} variables={{ skip: this.props.query.page * perPage - perPage }}>
+        <Query query={ALL_ITEMS_QUERY} variables={{ skip: this.props.query.page * perPage - perPage }} /*fetchPolicy='network-only' */ >
             {({ data, error, loading }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error: {error.message}</p>;
