@@ -1,7 +1,15 @@
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
+import User from './User';
 
 const Nav = () => <NavStyles>
+    <User>
+        {({ data: { currentUser } }) => {
+            console.log(currentUser);
+            if (currentUser) return <p>{currentUser.name}</p>
+            return null;
+        }}
+    </User>
     <Link href="/shop">
         <a>Shop</a>
     </Link>
