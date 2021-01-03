@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
+import { CURRENT_USER_QUERY } from './User';
 
 export const SIGNIN_MUTATION = gql`
     mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -24,7 +25,7 @@ export default class SignIn extends React.Component {
 
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
-    render = () => <Mutation mutation={SIGNIN_MUTATION} variables={this.state}>
+    render = () => <Mutation mutation={SIGNIN_MUTATION} variables={this.state} refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
         {(signup, { error, loading }) => <Form method='POST' onSubmit={async e => {
             e.preventDefault();
             // TODO - add catch block to show meaningful error message
