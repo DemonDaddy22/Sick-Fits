@@ -55,7 +55,6 @@ export default class UpdateItem extends React.Component {
                 ...this.state
             }
         });
-        console.log(res);
     }
 
     render = () => <Query query={SINGLE_ITEM_QUERY} variables={{ id: this.props.id }}>
