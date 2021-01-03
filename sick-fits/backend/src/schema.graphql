@@ -1,4 +1,7 @@
 # import * from './generated/prisma.graphql'
+type SuccessMessage {
+    message: String
+}
 
 type Mutation {
     createItem(data: ItemCreateInput!): Item!
@@ -8,6 +11,7 @@ type Mutation {
     deleteItem(where: ItemWhereUniqueInput!): Item
     signup(email: String!, password: String!, name: String!): User!
     signin(email: String!, password: String!): User!
+    signout: SuccessMessage
 }
 
 type Query {
