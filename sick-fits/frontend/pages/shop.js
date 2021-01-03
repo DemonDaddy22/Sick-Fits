@@ -33,17 +33,21 @@ const ItemsList = styled.div`
 
 export default class Shop extends React.Component {
 
-    render = () => <TextCenter>
-        <Pagination page={parseFloat(this.props.query.page) || 1} />
-        <Query query={ALL_ITEMS_QUERY} variables={{ skip: this.props.query.page * perPage - perPage }} /*fetchPolicy='network-only' */ >
-            {({ data, error, loading }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error: {error.message}</p>;
-                return <ItemsList>
-                    {data.items.map(item => <Item key={item.id} item={item}></Item>)}
-                </ItemsList>;
-            }}
-        </Query>
-        <Pagination page={parseFloat(this.props.query.page) || 1} />
-    </TextCenter>
+    render = () => {
+        const page = 'query' in this.props ? parseFloat(this.props.query.page) : 1;
+
+        return <TextCenter>
+            <Pagination page={page} />
+            <Query query={ALL_ITEMS_QUERY} variables={{ skip: page * perPage - perPage }} /*fetchPolicy='network-only' */ >
+                {({ data, error, loading }) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error: {error.message}</p>;
+                    return <ItemsList>
+                        {data.items.map(item => <Item key={item.id} item={item}></Item>)}
+                    </ItemsList>;
+                }}
+            </Query>
+            <Pagination page={page} />
+        </TextCenter>;
+    }
 }
