@@ -6,10 +6,19 @@ const { transport, makeEmailTemplate } = require('../mail');
 
 const Mutations = {
     async createItem(parent, args, ctx, info) {
-        // TODO - Check if user is logged in
-
+        if (!ctx.request.userId) {
+            throw new Error('You must be logged in to do that!');
+        }
+    
         const item = await ctx.db.mutation.createItem({
-            data: { ...args.data }
+            // this is how to create a relationship between the User and the Item
+            data: {
+                ...args.data, user: {
+                    connect: {
+                        id: ctx.request.userId
+                    }
+                }
+            }
         }, info);
 
         return item;
@@ -30,7 +39,7 @@ const Mutations = {
     },
     async signup(parent, args, ctx, info) {
         args.email = args.email.toLowerCase();
-        const password = await bcrypt.hash(args.password, 10); // second argument is the length of salt we want to be used for hashing
+        const password = await bcrypt.hash(args.password, 10); // second argument is the length of salt we want to use for hashing
         const user = await ctx.db.mutation.createUser({
             data: {
                 ...args,
@@ -104,7 +113,7 @@ const Mutations = {
             If you did not request to update your password, please ignore this mail.
             `)
         });
-        
+
         return { message: 'Success! Check your email for a reset link!' };
     },
     async resetPassword(parent, args, ctx, info) {

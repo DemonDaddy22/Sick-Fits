@@ -34,8 +34,8 @@ const ItemsList = styled.div`
 export default class Shop extends React.Component {
 
     render = () => {
-        const page = 'query' in this.props ? parseFloat(this.props.query.page) : 1;
-
+        const page = 'query' in this.props ? parseFloat(this.props.query.page || 1) : 1;
+        console.log(page);
         return <TextCenter>
             <Pagination page={page} />
             <Query query={ALL_ITEMS_QUERY} variables={{ skip: page * perPage - perPage }} /*fetchPolicy='network-only' */ >
