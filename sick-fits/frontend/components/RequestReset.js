@@ -27,7 +27,7 @@ export default class RequestReset extends React.Component {
             this.setState({ email: '' });
         }}>
             <fieldset disabled={loading} aria-busy={loading}>
-                <h2>Reset Your Password</h2>
+                <h2>Request to reset your password</h2>
                 <Error error={error} />
                 {!error && !loading && called && <p>Success! Check your email for a reset link!</p>}
                 <label htmlFor='email'>Email</label>
