@@ -90,7 +90,7 @@ const Mutations = {
             where: { email: args.email },
             data: { resetToken, resetTokenExpiry }
         });
-        console.log(res);
+        
         return { message: 'Success! Check your email for a reset link!' };
     },
     async resetPassword(parent, args, ctx, info) {
