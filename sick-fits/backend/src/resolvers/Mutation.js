@@ -9,7 +9,7 @@ const Mutations = {
         if (!ctx.request.userId) {
             throw new Error('You must be logged in to do that!');
         }
-    
+
         const item = await ctx.db.mutation.createItem({
             // this is how to create a relationship between the User and the Item
             data: {
@@ -151,7 +151,7 @@ const Mutations = {
         });
 
         return updateUser;
-    }
+    },
 };
 
 module.exports = Mutations;

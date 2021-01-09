@@ -9,7 +9,6 @@ const server = createServer();
 
 server.express.use(cookieParser());
 
-// TODO - use Express middleware to populate current user
 server.express.use((req, res, next) => {
     const { token } = req.cookies;
     if (token) {
@@ -19,6 +18,20 @@ server.express.use((req, res, next) => {
     }
     next();
 });
+
+// middleware to populate the current user
+server.express.use(async (req, res, next) => {
+    if (!req.userId) return next();
+
+    const user = await db.query.user({
+        where: { id: req.userId }
+    },
+        '{id, name, email, permissions}'
+    );
+
+    req.user = user;
+    next();
+})
 
 server.start({
     cors: {

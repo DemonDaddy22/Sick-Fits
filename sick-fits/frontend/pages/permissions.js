@@ -1,9 +1,10 @@
 import Auth from '../components/Auth';
+import Permissions from '../components/Permissions';
 
-const Permissions = props => <div>
+const PermissionsPage = props => <div>
     <Auth>
-        <p>Permissions</p>
+        <Permissions />
     </Auth>
 </div>
 
-export default Permissions;
+export default PermissionsPage;
