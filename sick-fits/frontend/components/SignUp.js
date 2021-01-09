@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router'
 import Form from './styles/Form';
 import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
@@ -30,7 +31,9 @@ export default class SignUp extends React.Component {
             e.preventDefault();
             // TODO - add catch block to show meaningful error message
             await signup();
-            this.setState({ name: '', email: '', password: '' });
+            this.setState({ name: '', email: '', password: '' }, () => Router.push({
+                pathname: '/'
+            }));
         }}>
             <fieldset disabled={loading} aria-busy={loading}>
                 <h2>Sign up for an account</h2>

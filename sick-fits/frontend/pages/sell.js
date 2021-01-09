@@ -1,7 +1,10 @@
+import Auth from '../components/Auth';
 import CreateItem from '../components/CreateItem';
 
 const Sell = props => <div>
-    <CreateItem></CreateItem>
+    <Auth>
+        <CreateItem></CreateItem>
+    </Auth>
 </div>
 
 export default Sell;
