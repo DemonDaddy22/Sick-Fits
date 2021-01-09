@@ -5,6 +5,6 @@ const PermissionsPage = props => <div>
     <Auth>
         <Permissions />
     </Auth>
-</div>
+</div>;
 
 export default PermissionsPage;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const SickButton = styled.button`
+  cursor: pointer;
   background: red;
   color: white;
   font-weight: 500;
