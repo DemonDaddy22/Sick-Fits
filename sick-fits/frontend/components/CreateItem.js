@@ -71,6 +71,7 @@ export default class CreateItem extends React.Component {
     render = () => {
         const { title, description, price, image } = this.state;
 
+        // TODO - add refetchQueries for all items
         return <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
             {(createItem, { loading, error }) => <Form onSubmit={e => this.handleSubmit(e, createItem)}>
                 <Error error={error} />
