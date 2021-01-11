@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Mutation } from 'react-apollo';
+import { TOGGLE_CART_MUTATION } from './Cart';
 import Signout from './Signout';
 import NavStyles from './styles/NavStyles';
 import User from './User';
@@ -20,6 +22,9 @@ const Nav = () =>
                     <a>Account</a>
                 </Link>
                 <Signout></Signout>
+                <Mutation mutation={TOGGLE_CART_MUTATION}>
+                    {toggleCart => <button onClick={toggleCart}>My Cart</button>}
+                </Mutation>
             </>}
             {!currentUser && <Link href='/signup'>
                 <a>Sign In</a>
