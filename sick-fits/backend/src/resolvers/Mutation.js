@@ -181,15 +181,17 @@ const Mutations = {
         if (!userId) throw new Error('You must be logged in!');
 
         const [existingCartItem] = await ctx.db.query.cartItems({
-            user: { id: userId },
-            item: { id: args.id }
-        });
+            where: {
+                user: { id: userId },
+                item: { id: args.id }
+            }
+        }, info);
 
         if (existingCartItem) {
             return ctx.db.mutation.updateCartItem({
                 where: { id: existingCartItem.id },
-                data: { quantity: existingCart.quantity + 1 }
-            });
+                data: { quantity: existingCartItem.quantity + 1 }
+            }, info);
         }
 
         return ctx.db.mutation.createCartItem({
@@ -201,7 +203,7 @@ const Mutations = {
                     connect: { id: args.id }
                 }
             }
-        });
+        }, info);
     }
 };
 

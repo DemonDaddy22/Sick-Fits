@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rohan-gupta-c50eb0/sick-fits/dev
-# timestamp: Tue Jan 12 2021 01:06:30 GMT+0530 (India Standard Time)
+# timestamp: Tue Jan 12 2021 23:12:06 GMT+0530 (India Standard Time)
 
 type AggregateCartItem {
   count: Int!
@@ -37,7 +37,7 @@ type CartItemConnection {
 
 input CartItemCreateInput {
   id: ID
-  quantity: Int!
+  quantity: Int
   item: ItemCreateOneInput!
   user: UserCreateOneWithoutCartInput!
 }
@@ -49,7 +49,7 @@ input CartItemCreateManyWithoutUserInput {
 
 input CartItemCreateWithoutUserInput {
   id: ID
-  quantity: Int!
+  quantity: Int
   item: ItemCreateOneInput!
 }
 
