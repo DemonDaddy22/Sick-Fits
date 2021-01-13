@@ -26,10 +26,28 @@ const DeleteButton = styled.button`
     }
 `;
 
-const RemoveCartItem = props => <Mutation mutation={REMOVE_FROM_CART_MUTATION} variables={{ id: props.id }}>
-    {(removeFromCart, { loading, error }) => <DeleteButton onClick={() => removeFromCart().catch(err => alert(err.message))}
-        title='Delete Button' disabled={loading}>&times;</DeleteButton>}
-</Mutation>;
+const RemoveCartItem = props => {
+    // gets called as soon as we get the response back from the server after the mutation has been performed
+    const update = (cache, payload) => {
+        const data = cache.readQuery({ query: CURRENT_USER_QUERY });
+
+        const cartItemId = payload.data.removeFromCart.id;
+        data.currentUser.cart = data.currentUser.cart.filter(cartItem => cartItem.id !== cartItemId);
+
+        cache.writeQuery({ query: CURRENT_USER_QUERY, data });
+    }
+
+    return <Mutation mutation={REMOVE_FROM_CART_MUTATION} variables={{ id: props.id }} update={update} optimisticResponse={{
+        __typename: 'Mutation',
+        removeFromCart: {
+            __typename: 'CartItem',
+            id: props.id
+        }
+    }}>
+        {(removeFromCart, { loading, error }) => <DeleteButton onClick={() => removeFromCart().catch(err => alert(err.message))}
+            title='Delete Button' disabled={loading}>&times;</DeleteButton>}
+    </Mutation>;
+}
 
 RemoveCartItem.propTypes = {
     id: PropTypes.string.isRequired
