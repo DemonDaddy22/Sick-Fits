@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { adopt } from 'react-adopt';
 import CartStyles from './styles/CartStyles';
 import Supreme from './styles/Supreme';
 import CloseButton from './styles/CloseButton';
@@ -23,31 +24,33 @@ export const TOGGLE_CART_MUTATION = gql`
     }
 `;
 
-const Cart = () => <User>
-    {({ data: { currentUser } }) => !currentUser ? null : <Mutation mutation={TOGGLE_CART_MUTATION}>
-        {toggleCart => <Query query={LOCAL_STATE_QUERY}>
-            {({ data }) => {
-                const totalQuantity = getTotalQuantity(currentUser.cart);
+const Composed = adopt({
+    user: ({ render }) => <User>{render}</User>,
+    toggleCart: ({ render }) => <Mutation mutation={TOGGLE_CART_MUTATION}>{render}</Mutation>,
+    localState: ({ render }) => <Query query={LOCAL_STATE_QUERY}>{render}</Query>
+});
 
-                return <CartStyles open={data.cartOpen}>
-                    <header>
-                        <CloseButton onClick={toggleCart} title='Close'>&times;</CloseButton>
-                        <Supreme>Your Cart</Supreme>
-                        <p>You have {totalQuantity} item{totalQuantity === 1 ? '' : 's'} in your cart</p>
-                    </header>
-                    <ul>
-                        {currentUser.cart.map(item => <CartItem key={item.id} item={item}></CartItem>)}
-                    </ul>
-                    <footer>
-                        <p>{formatMoney(calcTotalPrice(currentUser.cart))}</p>
-                        <SickButton>Checkout</SickButton>
-                    </footer>
-                </CartStyles>
-            }}
-        </Query>
-        }
-    </Mutation>
-    }
-</User>;
+const Cart = () => <Composed>
+    {({ user, toggleCart, localState }) => {
+        if (!user.data.currentUser) return null;
+
+        const totalQuantity = getTotalQuantity(user.data.currentUser.cart);
+
+        return <CartStyles open={localState.data.cartOpen}>
+            <header>
+                <CloseButton onClick={toggleCart} title='Close'>&times;</CloseButton>
+                <Supreme>Your Cart</Supreme>
+                <p>You have {totalQuantity} item{totalQuantity === 1 ? '' : 's'} in your cart</p>
+            </header>
+            <ul>
+                {user.data.currentUser.cart.map(item => <CartItem key={item.id} item={item}></CartItem>)}
+            </ul>
+            <footer>
+                <p>{formatMoney(calcTotalPrice(user.data.currentUser.cart))}</p>
+                <SickButton>Checkout</SickButton>
+            </footer>
+        </CartStyles>
+    }}
+</Composed>;
 
 export default Cart;
