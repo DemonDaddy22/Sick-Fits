@@ -12,16 +12,20 @@ const SingleItemStyles = styled.div`
     margin: 2rem auto;
     box-shadow: ${props => props.theme.bs};
     display: grid;
+    align-items: center;
     grid-auto-columns: 1fr;
     grid-auto-flow: column;
+    gap: 4rem;
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
-    .details {
-        margin: 3rem;
-        font-size: 2rem;
+    h1, h4 {
+        margin: 0;
+    }
+    p {
+        margin-top: 1rem;
     }
 `;
 
@@ -51,8 +55,8 @@ export default class SingleItem extends React.Component {
                             </Head>
                             <img src={data.item.largeImage} alt={data.item.title} />
                             <div className="details">
-                                <h2>{data.item.title}</h2>
-                                <h3>{formatMoney(data.item.price)}</h3>
+                                <h1>{data.item.title}</h1>
+                                <h4>{formatMoney(data.item.price)}</h4>
                                 <p>{data.item.description}</p>
                             </div>
                         </SingleItemStyles>}
