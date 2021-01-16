@@ -220,6 +220,31 @@ const Mutations = {
         return ctx.db.mutation.deleteCartItem({
             where: { id: args.id }
         }, info);
+    },
+    async createOrder(parent, args, ctx, info) {
+        const { userId } = ctx.request;
+        if (!userId) throw new Error('You must be logged in to complete this order!');
+
+        const user = await ctx.db.query.user({
+            where: { id: userId }
+        }, `{
+            id name email cart {
+                id quantity item {
+                    id
+                    title
+                    description
+                    price
+                    image
+                }
+            }
+        }`);
+
+        // recalculate total amount as someone can manipulate the amount on client side
+        const amount = user.cart.reduce((accu, curr) => {
+            if (!curr.item) return accu;
+            return accu + curr.item.price * curr.quantity
+        }, 0);
+        console.log(amount);
     }
 };
 
