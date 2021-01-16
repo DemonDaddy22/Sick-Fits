@@ -11,6 +11,7 @@ import CartItem from './CartItem';
 import getTotalQuantity from '../lib/getTotalQuantity';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import formatMoney from '../lib/formatMoney';
+import TakeMyMoney from './TakeMyMoney';
 
 export const LOCAL_STATE_QUERY = gql`
     query {
@@ -47,7 +48,9 @@ const Cart = () => <Composed>
             </ul>
             <footer>
                 <p>{formatMoney(calcTotalPrice(user.data.currentUser.cart))}</p>
-                <SickButton>Checkout</SickButton>
+                <TakeMyMoney>
+                    <SickButton>Checkout</SickButton>
+                </TakeMyMoney>
             </footer>
         </CartStyles>
     }}
