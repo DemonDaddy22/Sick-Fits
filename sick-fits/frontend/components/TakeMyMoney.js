@@ -26,9 +26,12 @@ const CREATE_ORDER_MUTATION = gql`
 
 export default class TakeMyMoney extends React.Component {
 
-    handleToken = (res, createOrder) => createOrder({
-        variables: { token: res.id }
-    }).catch(err => alert(err.message));
+    handleToken = async (res, createOrder) => {
+        const order = await createOrder({
+            variables: { token: res.id }
+        }).catch(err => alert(err.message));
+        console.log(order);
+    }
 
     render = () => <User>
         {({ data: { currentUser } }) => <Mutation mutation={CREATE_ORDER_MUTATION} refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
@@ -36,7 +39,7 @@ export default class TakeMyMoney extends React.Component {
                 name='Sick Fits'
                 description={`Order amount for ${getTotalQuantity(currentUser.cart)} items`}
                 amount={calcTotalPrice(currentUser.cart)}
-                image={currentUser.cart[0].item && currentUser.cart[0].item.image}
+                image={currentUser.cart.length && currentUser.cart[0].item && currentUser.cart[0].item.image}
                 stripeKey='pk_test_51IAIipHVnSSMv3AouTTyN90NDLoe81HlkSvCafuYjLSbXoHSdAcoFviAnJXhQBntygxHdq4VQ2w7roVgX2pHxbIT002mpNfOhn'
                 currency='USD'
                 email={currentUser.email}

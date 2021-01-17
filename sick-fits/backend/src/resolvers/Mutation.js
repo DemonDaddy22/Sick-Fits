@@ -236,6 +236,7 @@ const Mutations = {
                     description
                     price
                     image
+                    largeImage
                 }
             }
         }`);
@@ -263,6 +264,37 @@ const Mutations = {
                 }
             }
         });
+
+        // convert cart items to order items
+        const orderItems = user.cart.map(cartItem => {
+            const orderItem = {
+                ...cartItem.item,
+                quantity: cartItem.quantity,
+                user: { connect: { id: userId } }
+            };
+            delete orderItem.id;
+            return orderItem;
+        });
+
+        // create order
+        const order = await ctx.db.mutation.createOrder({
+            data: {
+                charge: charge.id,
+                total: charge.amount,
+                items: { create: orderItems },
+                user: { connect: { id: userId } }
+            }
+        }).catch(err => { throw new Error('There are still some out of stock items in your cart') });
+
+        // clean user's cart by deleting cart items
+        const cartItemIds = user.cart.map(cartItem => cartItem.id);
+        await ctx.db.mutation.deleteManyCartItems({
+            where: {
+                id_in: cartItemIds
+            }
+        });
+
+        return order;
     }
 };
 

@@ -48,9 +48,9 @@ const Cart = () => <Composed>
             </ul>
             <footer>
                 <p>{formatMoney(calcTotalPrice(user.data.currentUser.cart))}</p>
-                <TakeMyMoney>
+                {user.data.currentUser.cart.length && <TakeMyMoney>
                     <SickButton>Checkout</SickButton>
-                </TakeMyMoney>
+                </TakeMyMoney>}
             </footer>
         </CartStyles>
     }}
