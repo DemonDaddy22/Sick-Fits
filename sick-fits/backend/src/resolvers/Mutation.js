@@ -4,6 +4,7 @@ const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { transport, makeEmailTemplate } = require('../mail');
 const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 
 const Mutations = {
     async createItem(parent, args, ctx, info) {
@@ -244,7 +245,24 @@ const Mutations = {
             if (!curr.item) return accu;
             return accu + curr.item.price * curr.quantity
         }, 0);
-        console.log(amount);
+
+        // create stripe charge
+        const charge = await stripe.charges.create({
+            amount,
+            currency: 'USD',
+            source: args.token,
+            description: 'Payment for sick fits order',
+            shipping: {
+                name: user.name,
+                address: {
+                    line1: '510 Townsend St',
+                    postal_code: '98140',
+                    city: 'San Francisco',
+                    state: 'CA',
+                    country: 'US',
+                }
+            }
+        });
     }
 };
 
