@@ -35,6 +35,7 @@ type Query {
 	itemsConnection(where: ItemWhereInput): ItemConnection!
 	currentUser: User
 	users: [User]!
+	order(id: ID!): Order
 }
 
 type User {
