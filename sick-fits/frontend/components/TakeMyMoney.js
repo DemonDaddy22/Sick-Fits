@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
-import Router from 'react-router';
+import Router from 'next/router';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import NProgress from 'nprogress';
@@ -27,10 +27,16 @@ const CREATE_ORDER_MUTATION = gql`
 export default class TakeMyMoney extends React.Component {
 
     handleToken = async (res, createOrder) => {
+        NProgress.start();
+
         const order = await createOrder({
             variables: { token: res.id }
         }).catch(err => alert(err.message));
-        console.log(order);
+
+        Router.push({
+            pathname: '/order',
+            query: { id: order.data.createOrder.id }
+        });
     }
 
     render = () => <User>
