@@ -36,6 +36,17 @@ const Query = {
         if (!ownsOrder || !hasPermissionToSeeOrder) throw new Error(`You are not allowed to see this order!`);
 
         return order;
+    },
+    orders: async (parent, args, ctx, info) => {
+        if (!ctx.request.userId) throw new Error('You must be logged in!');
+
+        const orders = await ctx.db.query.orders({
+            where: {
+                user: { id: ctx.request.userId }
+            }
+        }, info);
+
+        return orders;
     }
 };
 
