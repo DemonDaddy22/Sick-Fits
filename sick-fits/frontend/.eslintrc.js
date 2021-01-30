@@ -16,7 +16,9 @@ module.exports = {
         "react",
         "react-hooks"
     ],
+    "extends": "eslint:recommended",
     "rules": {
+        "semi": 2,
         "comma-dangle": 0,
         "react/jsx-uses-vars": 1,
         "no-unused-vars": 1,

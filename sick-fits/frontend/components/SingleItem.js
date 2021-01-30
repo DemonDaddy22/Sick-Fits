@@ -47,7 +47,7 @@ export default class SingleItem extends React.Component {
 
         return <Query query={SINGLE_ITEM_QUERY} variables={{ id: this.props.id }}>
             {({ error, loading, data }) => error ? <Error error={error} /> :
-                loading ? <Error>Loading...</Error> :
+                loading ? <p>Loading...</p> :
                     !data.item ? <p>No item found for id {this.props.id}</p> :
                         <SingleItemStyles>
                             <Head>

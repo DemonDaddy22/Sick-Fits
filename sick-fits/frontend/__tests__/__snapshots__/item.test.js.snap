@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Item /> should render item and take snapshot 1`] = `
+<ItemStyles__Item>
+  <img
+    alt="Foobar"
+    src="foo.jpg"
+  />
+  <Title>
+    <Link
+      href={
+        Object {
+          "pathname": "/item",
+          "query": Object {
+            "id": "foo123",
+          },
+        }
+      }
+    >
+      <a>
+        Foobar
+      </a>
+    </Link>
+  </Title>
+  <PriceTag>
+    $20
+  </PriceTag>
+  <p>
+    This is foobar
+  </p>
+  <div
+    className="buttonList"
+  >
+    <Link
+      href={
+        Object {
+          "pathname": "/update",
+          "query": Object {
+            "id": "foo123",
+          },
+        }
+      }
+    >
+      <a>
+        Edit
+      </a>
+    </Link>
+    <AddToCart
+      id="foo123"
+    />
+    <DeleteItem
+      id="foo123"
+    >
+      Delete Item
+    </DeleteItem>
+  </div>
+</ItemStyles__Item>
+`;
