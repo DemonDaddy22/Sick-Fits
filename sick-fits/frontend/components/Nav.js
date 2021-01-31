@@ -9,7 +9,7 @@ import User from './User';
 
 const Nav = () =>
     <User>
-        {({ data: { currentUser } }) => <NavStyles>
+        {({ data: { currentUser } }) => <NavStyles data-test='nav'>
             <Link href='/shop'>
                 <a>Shop</a>
             </Link>

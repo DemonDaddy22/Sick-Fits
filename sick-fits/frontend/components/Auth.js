@@ -1,5 +1,6 @@
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import SignIn from './Signin';
 import { CURRENT_USER_QUERY } from './User';
 
 const TextCenter = styled.p`
@@ -8,7 +9,10 @@ const TextCenter = styled.p`
 
 const Auth = props => <Query query={CURRENT_USER_QUERY}>
     {({ data, loading }) => loading ? <TextCenter>Loading...</TextCenter> :
-        !data.currentUser ? <TextCenter>Please sign in to continue</TextCenter> :
+        !data.currentUser ? <>
+            <TextCenter>Please sign in to continue</TextCenter>
+            <SignIn />
+        </> :
             props.children
     }
 </Query>;
