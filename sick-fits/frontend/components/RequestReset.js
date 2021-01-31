@@ -21,7 +21,7 @@ export default class RequestReset extends React.Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render = () => <Mutation mutation={REQUEST_RESET_MUTATION} variables={this.state}>
-        {(reset, { error, loading, called }) => <Form method='POST' onSubmit={async e => {
+        {(reset, { error, loading, called }) => <Form data-test='form' method='POST' onSubmit={async e => {
             e.preventDefault();
             await reset();
             this.setState({ email: '' });

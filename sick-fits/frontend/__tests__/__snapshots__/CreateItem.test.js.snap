@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateItem /> renders and matches snapshot 1`] = `
+Array [
+  <Form
+    data-test="createItem"
+    onSubmit={[Function]}
+  >
+    <form
+      className="Form-sc-1xszr8q-0 dUkfCz"
+      data-test="createItem"
+      onSubmit={[Function]}
+    >
+      <DisplayError
+        error={Object {}}
+      />
+      <fieldset
+        aria-busy={false}
+        disabled={false}
+      >
+        <label
+          htmlFor="image"
+        >
+          Image
+        </label>
+        <input
+          accept="image/*"
+          id="image"
+          name="image"
+          onChange={[Function]}
+          placeholder="Upload an Image"
+          required={true}
+          type="file"
+        />
+        <label
+          htmlFor="title"
+        >
+          Title
+        </label>
+        <input
+          id="title"
+          name="title"
+          onChange={[Function]}
+          placeholder="Enter a Title"
+          required={true}
+          type="text"
+          value=""
+        />
+        <label
+          htmlFor="price"
+        >
+          Price
+        </label>
+        <input
+          id="price"
+          name="price"
+          onChange={[Function]}
+          placeholder="Enter a Price"
+          required={true}
+          type="number"
+          value={0}
+        />
+        <label
+          htmlFor="description"
+        >
+          Description
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          onChange={[Function]}
+          placeholder="Enter a Description"
+          required={true}
+          value=""
+        />
+        <button
+          type="submit"
+        >
+          Submit
+        </button>
+      </fieldset>
+    </form>
+  </Form>,
+  <form
+    className="Form-sc-1xszr8q-0 dUkfCz"
+    data-test="createItem"
+    onSubmit={[Function]}
+  >
+    <DisplayError
+      error={Object {}}
+    />
+    <fieldset
+      aria-busy={false}
+      disabled={false}
+    >
+      <label
+        htmlFor="image"
+      >
+        Image
+      </label>
+      <input
+        accept="image/*"
+        id="image"
+        name="image"
+        onChange={[Function]}
+        placeholder="Upload an Image"
+        required={true}
+        type="file"
+      />
+      <label
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <input
+        id="title"
+        name="title"
+        onChange={[Function]}
+        placeholder="Enter a Title"
+        required={true}
+        type="text"
+        value=""
+      />
+      <label
+        htmlFor="price"
+      >
+        Price
+      </label>
+      <input
+        id="price"
+        name="price"
+        onChange={[Function]}
+        placeholder="Enter a Price"
+        required={true}
+        type="number"
+        value={0}
+      />
+      <label
+        htmlFor="description"
+      >
+        Description
+      </label>
+      <textarea
+        id="description"
+        name="description"
+        onChange={[Function]}
+        placeholder="Enter a Description"
+        required={true}
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>,
+]
+`;

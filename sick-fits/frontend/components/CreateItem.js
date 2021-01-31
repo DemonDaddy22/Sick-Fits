@@ -73,7 +73,7 @@ export default class CreateItem extends React.Component {
 
         // TODO - add refetchQueries for all items
         return <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
-            {(createItem, { loading, error }) => <Form onSubmit={e => this.handleSubmit(e, createItem)}>
+            {(createItem, { loading, error }) => <Form data-test='createItem' onSubmit={e => this.handleSubmit(e, createItem)}>
                 <Error error={error} />
                 <fieldset disabled={loading} aria-busy={loading}>
                     {/* TODO - make input fields bigger and adjust margins */}
