@@ -64,6 +64,8 @@ const Mutations = {
         ctx.response.cookie('token', token, {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 365, // cookie valid for 1 year
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None',
         });
 
         return user;
@@ -84,6 +86,8 @@ const Mutations = {
         ctx.response.cookie('token', token, {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 365, // cookie valid for 1 year
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None',
         });
 
         return user;
